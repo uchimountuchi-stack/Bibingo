@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>じゃんけんゲーム</title>
+
+<style>
+  body {
+    font-family: sans-serif;
+    text-align: center;
+    padding-top: 50px;
+    background: #f0f8ff;
+  }
+  h1 { font-size: 28px; }
+  .choices button {
+    font-size: 24px;
+    padding: 12px 24px;
+    margin: 10px;
+    border-radius: 12px;
+  }
+  #cpu, #result {
+    margin-top: 25px;
+    font-size: 28px;
+  }
+</style>
+
+</head>
+<body>
+
+<h1>じゃんけんゲーム</h1>
+
+<div class="choices">
+  <button onclick="play('グー')">✊ グー</button>
+  <button onclick="play('チョキ')">✌️ チョキ</button>
+  <button onclick="play('パー')">🖐 パー</button>
+</div>
+
+<div id="cpu"></div>
+<div id="result"></div>
+
+<script>
+function play(user) {
+  const hands = ["グー", "チョキ", "パー"];
+  const cpu = hands[Math.floor(Math.random() * 3)];
+
+  document.getElementById("cpu").textContent = "相手：" + cpu;
+
+  let result = "";
+  if (user === cpu) {
+    result = "あいこ！";
+  } else if (
+    (user === "グー" && cpu === "チョキ") ||
+    (user === "チョキ" && cpu === "パー") ||
+    (user === "パー" && cpu === "グー")
+  ) {
+    result = "あなたの勝ち！";
+  } else {
+    result = "あなたの負け…";
+  }
+
+  document.getElementById("result").textContent = result;
+}
+</script>
+
+</body>
+</html>
